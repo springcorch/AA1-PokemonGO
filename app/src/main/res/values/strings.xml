@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">PokemonGO</string>
+    <string name="section1">RAID</string>
+    <string name="section2">EGG HATCH</string>
+    <string name="section3">POKEDEX</string>
+    <string name="section4">COMMUNITY</string>
+    <string name="pokemon_name_0">BULBASAUR</string>
+    <string name="pokemon_name_1">CHARMANDER</string>
+    <string name="pokemon_name_2">SQUIRTLE</string>
+    <string name="pokemon_name_3">CHIKORITA</string>
+    <string name="pokemon_name_4">CYNDAQUIL</string>
+    <string name="pokemon_name_5">TOTODILE</string>
+    <string name="pokemon_name_6">TREECKO</string>
+    <string name="pokemon_name_7">TORCHIC</string>
+    <string name="pokemon_name_8">MUDKIP</string>
+    <string name="types">TYPE: %d</string>
+    <string name="pokemon_type_0">Grass</string>string>
+    <string name="pokemon_type_1">Fire</string>string>
+    <string name="pokemon_type_2">Water</string>string>
 </resources>
