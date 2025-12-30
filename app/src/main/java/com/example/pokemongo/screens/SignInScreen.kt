@@ -19,12 +19,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,6 +40,11 @@ import com.example.pokemongo.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignInScreen(modifier: Modifier, navController: NavController) {
+    // Variables fuera para evitar problemas
+    var usernameInput by remember { mutableStateOf("") }
+    var mailInput by remember { mutableStateOf("") }
+    var passwordInput by remember { mutableStateOf("") }
+
     Column(
         modifier
             .fillMaxSize()
@@ -64,7 +74,6 @@ fun SignInScreen(modifier: Modifier, navController: NavController) {
         Box(modifier = modifier.fillMaxWidth(),
             contentAlignment = Alignment.TopCenter)
         {
-            val mailInputExample = "Enter your username"
             Text(
                 text = "Username",
                 color = MaterialTheme.colorScheme.onTertiary,
@@ -73,8 +82,9 @@ fun SignInScreen(modifier: Modifier, navController: NavController) {
             )
 
             OutlinedTextField(
-                value = mailInputExample,
-                onValueChange = {},
+                value = usernameInput,
+                onValueChange = {usernameInput = it},
+                label = { Text(stringResource(R.string.username_label)) },
                 modifier = modifier
                     .padding(16.dp).padding(top = 8.dp)
                     .border(1.dp, Color.White, RoundedCornerShape(8.dp)),
@@ -86,7 +96,6 @@ fun SignInScreen(modifier: Modifier, navController: NavController) {
         Box(modifier = modifier.fillMaxWidth(),
             contentAlignment = Alignment.TopCenter)
         {
-            val mailInputExample = "Enter your mail"
             Text(
                 text = "Mail",
                 color = MaterialTheme.colorScheme.onTertiary,
@@ -95,8 +104,9 @@ fun SignInScreen(modifier: Modifier, navController: NavController) {
             )
 
             OutlinedTextField(
-                value = mailInputExample,
-                onValueChange = {},
+                value = mailInput,
+                onValueChange = {mailInput = it},
+                label = { Text(stringResource(R.string.email_label)) },
                 modifier = modifier
                     .padding(16.dp).padding(top = 8.dp)
                     .border(1.dp, Color.White, RoundedCornerShape(8.dp)),
@@ -114,12 +124,11 @@ fun SignInScreen(modifier: Modifier, navController: NavController) {
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.bodyLarge,
             )
-            val passwordInputExample = "Enter your password"
-
 
             OutlinedTextField(
-                value = passwordInputExample,
-                onValueChange = {},
+                value = passwordInput,
+                onValueChange = {passwordInput = it},
+                label = { Text(stringResource(R.string.password_label)) },
                 modifier = modifier
                     .padding(16.dp).padding(top = 8.dp)
                     .border(1.dp, Color.White, RoundedCornerShape(8.dp)),
