@@ -29,20 +29,57 @@ import com.example.pokemongo.components.NavComponent
 import com.example.pokemongo.components.SectionTitleComponent
 import com.example.pokemongo.data.Pokemon
 import com.example.pokemongo.data.pokemons
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import kotlinx.coroutines.delay
 
 //IAGO & SAM HAS MADE THIS SCREEN
 @Composable
+fun AnimatedPokemonItem(pokemon: Pokemon, index: Int, modifier: Modifier = Modifier) {
+    var visible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        delay(index * 150L)
+        visible = true
+    }
+
+    AnimatedVisibility(
+        visible = visible,
+        enter = fadeIn() + slideInVertically(initialOffsetY = { it / 2 })
+    ) {
+        PokemonItem(
+            pokemon,
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(4.dp)
+                .padding(horizontal = 12.dp)
+        )
+    }
+}
+
+@Composable
 fun PokedexScreen(modifier: Modifier, navController: NavController) {
-    Column(Modifier.background(MaterialTheme.colorScheme.primary)){
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.primary) // fondo principal sí
+    ) {
         SectionTitleComponent(modifier, 2, navController)
         Spacer(Modifier.padding(8.dp))
         NavComponent(Modifier, navController)
         Spacer(Modifier.padding(8.dp))
         LazyColumn {
-            items(pokemons.size) {
-                PokemonItem(
-                    pokemon = pokemons[it],
-                    modifier = Modifier.padding(4.dp).padding(horizontal = 12.dp)
+            items(pokemons.size) { i ->
+                AnimatedPokemonItem(
+                    pokemon = pokemons[i],
+                    index = i
                 )
             }
         }
