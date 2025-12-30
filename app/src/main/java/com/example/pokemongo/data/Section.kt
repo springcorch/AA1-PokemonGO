@@ -4,7 +4,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.example.pokemongo.R
 
-annotation class Section(
+//Data class for all sections with their picture and name!
+data class Section(
     @DrawableRes val img: Int,
     @StringRes val name: Int
 )
