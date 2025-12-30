@@ -4,7 +4,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.example.pokemongo.R
 
-annotation class Pokemon(
+//Pokedex con los iniciales y sus tipos!
+data class Pokemon(
     @DrawableRes val image: Int,
     @StringRes val name: Int,
     @StringRes val type: Int
